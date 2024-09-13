@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up - Multi-Language Text-to-Text Translator{% endblock %}
+
+{% block content %}
+<div class="w-full max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg mt-10 border border-gray-300">
+    <h2 class="text-3xl font-semibold mb-6 text-gray-800">Sign Up</h2>
+    <form action="/signup" method="post">
+        <div class="mb-4">
+            <label for="first_name" class="block text-black">First Name</label>
+            <input type="text" id="first_name" name="first_name" class="input-field w-full px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+            <label for="last_name" class="block text-black">Last Name</label>
+            <input type="text" id="last_name" name="last_name" class="input-field w-full px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+            <label for="username" class="block text-black">Username</label>
+            <input type="text" id="username" name="username" class="input-field w-full px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-black">Email</label>
+            <input type="email" id="email" name="email" class="input-field w-full px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+            <label for="password" class="block text-black">Password</label>
+            <input type="password" id="password" name="password" class="input-field w-full px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+            <label for="confirm_password" class="block text-black">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" class="input-field w-full px-3 py-2" required>
+        </div>
+        <button type="submit" class="btn-primary text-white w-full">Sign Up</button>
+    </form>
+</div>
+{% endblock %}

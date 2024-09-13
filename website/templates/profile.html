@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .navbar-bg {
+            background: #ffffff;
+            color: #1a202c;
+        }
+
+        .btn-primary {
+            background: #2b6cb0;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #2c5282;
+            transform: scale(1.05);
+        }
+
+        .profile-section {
+            padding: 2rem;
+            background-color: #ffffff;
+            color: #1a202c;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: calc(100vh - 64px); /* Full height minus header */
+        }
+
+        .translations-section {
+            margin-top: 2rem;
+        }
+
+        .translation-item {
+            background-color: #f7fafc;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .translation-item p {
+            margin: 0.5rem 0;
+            color: #1a202c;
+        }
+
+        .translation-item span {
+            font-weight: bold;
+        }
+
+        .profile-info {
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .profile-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <header class="navbar-bg py-4 shadow-md">
+        <nav class="container mx-auto flex justify-between items-center px-4">
+            <a href="/" class="text-2xl font-bold">Multi-Language Text-to-Text Translator</a>
+            <ul class="flex space-x-6">
+                <li><a href="/dashboard" class="text-lg hover:underline">Home</a></li>
+                <li><a href="/profile" class="text-lg hover:underline">Profile</a></li>
+                <li><a href="/logout" class="text-lg hover:underline">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="flex-grow">
+        <div class="profile-section container mx-auto">
+            <!-- User Profile Info -->
+            <div class="profile-info bg-white p-6 rounded-lg shadow-md">
+                <h1 class="text-3xl font-semibold mb-4 text-gray-900">User Profile</h1>
+                <p class="text-lg mb-2 text-gray-800"><span class="font-bold">Username:</span> {{ user.username }}</p>
+                <p class="text-lg mb-4 text-gray-800"><span class="font-bold">Email:</span> {{ user.email }}</p>
+            </div>
+
+            <!-- User Translations -->
+            <div class="translations-section mt-6">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-900">Your Translations</h2>
+
+                {% if translations %}
+                <div class="space-y-4">
+                    {% for translation in translations %}
+                    <div class="translation-item">
+                        <p class="mb-2 text-gray-800"><span class="font-bold">Original Text:</span> {{ translation.original_text }}</p>
+                        <p class="text-gray-800"><span class="font-bold">Translated Text:</span> {{ translation.translated_text }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-gray-600">You haven't made any translations yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+   
+</body>
+
+</html>

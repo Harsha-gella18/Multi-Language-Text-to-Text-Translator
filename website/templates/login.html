@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Multi-Language Text-to-Text Translator{% endblock %}
+
+{% block content %}
+<div class="w-full max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg mt-10 border border-gray-300">
+    <h2 class="text-3xl font-semibold mb-6 text-gray-800">Login</h2>
+    <form action="/login" method="post">
+        <div class="mb-4">
+            <label for="username" class="block text-black">Username</label>
+            <input type="text" id="username" name="username" class="input-field w-full px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+            <label for="password" class="block text-black">Password</label>
+            <input type="password" id="password" name="password" class="input-field w-full px-3 py-2" required>
+        </div>
+        <button type="submit" class="btn-primary text-white w-full">Login</button>
+    </form>
+    <div class="text-center mt-4">
+        <a href="/forgot_password" class="text-sm text-black hover:underline">Forgot your password?</a>
+    </div>
+</div>
+{% endblock %}
