@@ -100,6 +100,28 @@
             }
         }
 
+        .sliding-text-container {
+        white-space: nowrap;  /* Prevents line breaks */
+        overflow: hidden;     /* Hides text that goes out of bounds */
+        box-sizing: border-box;
+        width: 100%;          /* Full width of the window */
+    }
+
+    .sliding-text {
+        display: inline-block;
+        width: 100%;          /* Full width of the text element */
+        transform: translateX(100%);  /* Start just off-screen to the right */
+        animation: slide 15s linear infinite;  /* Move across the screen in 10s */
+    }
+
+    @keyframes slide {
+        0% {
+            transform: translateX(100%);   /* Start at the right edge (off-screen) */
+        }
+        100% {
+            transform: translateX(-100%);  /* Move fully off the left edge */
+        }
+    }
         /* Typing effect for description */
         .typing {
             border-right: 2px solid black;
@@ -165,36 +187,40 @@
     {% block content %}
     <main class="center-content">
         <section class="text-gray-800 w-full flex flex-col items-center">
-            <h1 class="text-5xl font-bold mb-6 weaving-words">
+            <h1 class="text-5xl font-bold mb-6 weaving-words text-center px-4">
                 <span>Explore</span> <span>Global</span> <span>Communication</span> <span>with</span> <span>Ease</span>
             </h1>
-            <p class="text-xl mb-10 typing">Instantly translate between multiple languages with a single click.</p>
 
+            <!-- Sliding text effect for description -->
+            <div class="sliding-text-container w-full px-4">
+                <p class="sliding-text text-center">Instantly translate between multiple languages with a single click.</p>
+            </div>
+        </br>
             <a href="/about" class="btn-primary mb-6">Learn More</a>
 
 
             <!-- Call to Action -->
             <section class="text-center py-10 mt-16">
-                <h2 class="text-4xl font-semibold mb-4">Ready to Break Language Barriers?</h2>
-                <p class="text-lg mb-6">Sign up now and start translating with ease.</p>
+                <h2 class="text-4xl font-semibold mb-4 px-4">Ready to Break Language Barriers?</h2>
+                <p class="text-lg mb-6 px-4">Sign up now and start translating with ease.</p>
                 <a href="/signup" class="btn-primary">Get Started</a>
             </section>
 
             <!-- Testimonials -->
-            <section class="w-full py-10">
-                <h2 class="text-3xl font-bold mb-8">What Our Users Say</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <section class="w-full py-10 px-4">
+                <h2 class="text-3xl font-bold mb-8 text-center">What Our Users Say</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="testimonial">
                         <p>"This translator has saved me hours of work!"</p>
-                        <span>- User A</span>
+                        <span>- Praveen Vajrapu</span>
                     </div>
                     <div class="testimonial">
                         <p>"Seamless experience and accurate translations."</p>
-                        <span>- User B</span>
+                        <span>- Venkatesh Gokavarapu</span>
                     </div>
                     <div class="testimonial">
                         <p>"Best translation platform I’ve ever used!"</p>
-                        <span>- User C</span>
+                        <span>- Harsha Vardhan Gella</span>
                     </div>
                 </div>
             </section>
@@ -209,8 +235,3 @@
     </footer>
 </body>
 </html>
-
-
-
-
-

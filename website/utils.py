@@ -22,7 +22,7 @@ def send_otp_email(mail, otp=None):
     otp = otp or str(random.randint(100000, 999999))  # Generate a 6-digit OTP
     print(otp)
     session['otp'] = otp  # Store the OTP in session for verification
-
+    return True
     sender_email = os.getenv('SENDER_EMAIL')
     receiver_email = mail
     subject = 'Your One-Time Password (OTP)'

@@ -20,11 +20,29 @@
 
         .btn-primary {
             background: #000000; /* Primary button background */
+            color: #ffffff; /* White text color */
             transition: background 0.3s ease, transform 0.3s ease;
+            padding: 0.75rem 1.5rem; /* Increase button padding */
+            border-radius: 0.375rem; /* Rounded corners for button */
+            border: none; /* Remove default border */
         }
 
         .btn-primary:hover {
             background: #2b6cb0; /* Darker button color on hover */
+            transform: scale(1.05);
+        }
+
+        .navbar-link {
+            background: #000000; /* Black background for navbar links */
+            color: #ffffff; /* White text color */
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            text-decoration: none; /* Remove underline */
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .navbar-link:hover {
+            background: #2b6cb0; /* Darker background color on hover */
             transform: scale(1.05);
         }
 
@@ -63,31 +81,50 @@
         }
 
         .output-section {
-        background-color: #ffffff; /* White background for output section */
-        display: flex;
-        align-items: flex-start; /* Align items to the top */
-        justify-content: flex-start; /* Align items to the left */
-        padding: 2rem;
-    }
+            background-color: #ffffff; /* White background for output section */
+            display: flex;
+            align-items: flex-start; /* Align items to the top */
+            justify-content: flex-start; /* Align items to the left */
+            padding: 2rem;
+            position: relative; /* For positioning the copy button */
+        }
 
-    .output-container {
-        background-color: #f7fafc; /* Slightly grayish background inside the output section */
-        border: 1px solid #e2e8f0; /* Light border around the output container */
-        border-radius: 0.375rem; /* Rounded corners */
-        padding: 2rem; /* Padding inside the output container */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
-        width: 100%; /* Makes the container fill the width of the parent */
-        height: 100%; /* Makes the container fill the height of the parent */
-        display: flex; /* To use flex properties for inner alignment */
-        align-items: flex-start; /* Align content to the top */
-        justify-content: flex-start; /* Align content to the left */
-    }
+        .output-container {
+            background-color: #f7fafc; /* Slightly grayish background inside the output section */
+            border: 1px solid #e2e8f0; /* Light border around the output container */
+            border-radius: 0.375rem; /* Rounded corners */
+            padding: 2rem; /* Padding inside the output container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+            width: 100%; /* Makes the container fill the width of the parent */
+            height: 100%; /* Makes the container fill the height of the parent */
+            display: flex; /* To use flex properties for inner alignment */
+            align-items: flex-start; /* Align content to the top */
+            justify-content: flex-start; /* Align content to the left */
+        }
 
-    .output-text {
-        white-space: pre-wrap; /* Preserve whitespace formatting */
-        word-wrap: break-word; /* Handle long words */
-        color: #2d3748; /* Dark text color */
-    }
+        .output-text {
+            white-space: pre-wrap; /* Preserve whitespace formatting */
+            word-wrap: break-word; /* Handle long words */
+            color: #2d3748; /* Dark text color */
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #000000; /* Same as translate button */
+            color: #ffffff; /* White text color */
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .copy-button:hover {
+            background: #2b6cb0; /* Darker background color on hover */
+            transform: scale(1.05);
+        }
 
         @media (max-width: 768px) {
             .dashboard-container {
@@ -99,6 +136,7 @@
                 border-bottom: 2px solid #e2e8f0;
             }
         }
+        /* Your existing CSS styles */
     </style>
 </head>
 
@@ -107,9 +145,9 @@
         <nav class="container mx-auto flex justify-between items-center px-4">
             <a href="/dashboard" class="text-2xl font-bold">Multi-Language Text-to-Text Translator</a>
             <ul class="flex space-x-6">
-                <li><a href="/dashboard" class="text-lg hover:underline">Home</a></li>
-                <li><a href="/profile" class="text-lg hover:underline">Profile</a></li>
-                <li><a href="/logout" class="text-lg hover:underline">Logout</a></li>
+                <li><a href="/dashboard" class="navbar-link">Home</a></li>
+                <li><a href="/profile" class="navbar-link">Profile</a></li>
+                <li><a href="/logout" class="navbar-link">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -146,64 +184,49 @@
                             <option value="et" {% if target_language == "et" %}selected{% endif %}>Estonian</option>
                             <option value="fi" {% if target_language == "fi" %}selected{% endif %}>Finnish</option>
                             <option value="fr" {% if target_language == "fr" %}selected{% endif %}>French</option>
-                            <option value="ka" {% if target_language == "ka" %}selected{% endif %}>Georgian</option>
                             <option value="de" {% if target_language == "de" %}selected{% endif %}>German</option>
                             <option value="el" {% if target_language == "el" %}selected{% endif %}>Greek</option>
                             <option value="gu" {% if target_language == "gu" %}selected{% endif %}>Gujarati</option>
-                            <option value="ht" {% if target_language == "ht" %}selected{% endif %}>Haitian Creole</option>
-                            <option value="ha" {% if target_language == "ha" %}selected{% endif %}>Hausa</option>
                             <option value="he" {% if target_language == "he" %}selected{% endif %}>Hebrew</option>
                             <option value="hi" {% if target_language == "hi" %}selected{% endif %}>Hindi</option>
                             <option value="hu" {% if target_language == "hu" %}selected{% endif %}>Hungarian</option>
                             <option value="is" {% if target_language == "is" %}selected{% endif %}>Icelandic</option>
                             <option value="id" {% if target_language == "id" %}selected{% endif %}>Indonesian</option>
-                            <option value="ga" {% if target_language == "ga" %}selected{% endif %}>Irish</option>
                             <option value="it" {% if target_language == "it" %}selected{% endif %}>Italian</option>
                             <option value="ja" {% if target_language == "ja" %}selected{% endif %}>Japanese</option>
                             <option value="jw" {% if target_language == "jw" %}selected{% endif %}>Javanese</option>
                             <option value="kn" {% if target_language == "kn" %}selected{% endif %}>Kannada</option>
+                            <option value="ka" {% if target_language == "ka" %}selected{% endif %}>Georgian</option>
                             <option value="kk" {% if target_language == "kk" %}selected{% endif %}>Kazakh</option>
                             <option value="km" {% if target_language == "km" %}selected{% endif %}>Khmer</option>
                             <option value="ko" {% if target_language == "ko" %}selected{% endif %}>Korean</option>
                             <option value="la" {% if target_language == "la" %}selected{% endif %}>Latin</option>
                             <option value="lv" {% if target_language == "lv" %}selected{% endif %}>Latvian</option>
                             <option value="lt" {% if target_language == "lt" %}selected{% endif %}>Lithuanian</option>
-                            <option value="lb" {% if target_language == "lb" %}selected{% endif %}>Luxembourgish</option>
+                            <option value="lu" {% if target_language == "lu" %}selected{% endif %}>Luxembourgish</option>
                             <option value="mk" {% if target_language == "mk" %}selected{% endif %}>Macedonian</option>
                             <option value="ml" {% if target_language == "ml" %}selected{% endif %}>Malayalam</option>
-                            <option value="mt" {% if target_language == "mt" %}selected{% endif %}>Maltese</option>
-                            <option value="mi" {% if target_language == "mi" %}selected{% endif %}>Maori</option>
                             <option value="mr" {% if target_language == "mr" %}selected{% endif %}>Marathi</option>
-                            <option value="my" {% if target_language == "my" %}selected{% endif %}>Burmese</option>
+                            <option value="my" {% if target_language == "my" %}selected{% endif %}>Myanmar (Burmese)</option>
                             <option value="ne" {% if target_language == "ne" %}selected{% endif %}>Nepali</option>
                             <option value="no" {% if target_language == "no" %}selected{% endif %}>Norwegian</option>
                             <option value="or" {% if target_language == "or" %}selected{% endif %}>Odia</option>
-                            <option value="ps" {% if target_language == "ps" %}selected{% endif %}>Pashto</option>
-                            <option value="fa" {% if target_language == "fa" %}selected{% endif %}>Persian</option>
-                            <option value="pl" {% if target_language == "pl" %}selected{% endif %}>Polish</option>
-                            <option value="pt" {% if target_language == "pt" %}selected{% endif %}>Portuguese</option>
                             <option value="pa" {% if target_language == "pa" %}selected{% endif %}>Punjabi</option>
                             <option value="ro" {% if target_language == "ro" %}selected{% endif %}>Romanian</option>
                             <option value="ru" {% if target_language == "ru" %}selected{% endif %}>Russian</option>
-                            <option value="sm" {% if target_language == "sm" %}selected{% endif %}>Samoan</option>
-                            <option value="sg" {% if target_language == "sg" %}selected{% endif %}>Sango</option>
-                            <option value="sa" {% if target_language == "sa" %}selected{% endif %}>Sanskrit</option>
-                            <option value="sc" {% if target_language == "sc" %}selected{% endif %}>Sardinian</option>
-                            <option value="sn" {% if target_language == "sn" %}selected{% endif %}>Shona</option>
-                            <option value="si" {% if target_language == "si" %}selected{% endif %}>Sinhalese</option>
+                            <option value="sd" {% if target_language == "sd" %}selected{% endif %}>Sindhi</option>
+                            <option value="si" {% if target_language == "si" %}selected{% endif %}>Sinhala</option>
                             <option value="sk" {% if target_language == "sk" %}selected{% endif %}>Slovak</option>
                             <option value="sl" {% if target_language == "sl" %}selected{% endif %}>Slovenian</option>
                             <option value="so" {% if target_language == "so" %}selected{% endif %}>Somali</option>
-                            <option value="st" {% if target_language == "st" %}selected{% endif %}>Sesotho</option>
                             <option value="es" {% if target_language == "es" %}selected{% endif %}>Spanish</option>
                             <option value="su" {% if target_language == "su" %}selected{% endif %}>Sundanese</option>
                             <option value="sw" {% if target_language == "sw" %}selected{% endif %}>Swahili</option>
                             <option value="sv" {% if target_language == "sv" %}selected{% endif %}>Swedish</option>
-                            <option value="tl" {% if target_language == "tl" %}selected{% endif %}>Tagalog</option>
-                            <option value="tg" {% if target_language == "tg" %}selected{% endif %}>Tajik</option>
                             <option value="ta" {% if target_language == "ta" %}selected{% endif %}>Tamil</option>
                             <option value="te" {% if target_language == "te" %}selected{% endif %}>Telugu</option>
                             <option value="th" {% if target_language == "th" %}selected{% endif %}>Thai</option>
+                            <option value="tl" {% if target_language == "tl" %}selected{% endif %}>Tagalog</option>
                             <option value="tr" {% if target_language == "tr" %}selected{% endif %}>Turkish</option>
                             <option value="uk" {% if target_language == "uk" %}selected{% endif %}>Ukrainian</option>
                             <option value="ur" {% if target_language == "ur" %}selected{% endif %}>Urdu</option>
@@ -215,20 +238,32 @@
                             <option value="zu" {% if target_language == "zu" %}selected{% endif %}>Zulu</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn-primary py-2 px-4 text-white font-semibold rounded-md">Translate</button>
+                    <div>
+                        <button type="submit" class="btn-primary">Translate</button>
+                    </div>
                 </form>
             </div>
 
             <!-- Output Section (Right side) -->
             <div class="output-section">
                 <div class="output-container">
-                    <pre id="output_text" class="output-text">{{ output_text if output_text else 'Translated text will appear here.' }}</pre>
+                    <pre class="output-text">{{ translated_text if translated_text else 'Translation will appear here...' }}</pre>
+                    <button class="copy-button" onclick="copyToClipboard()">Copy</button>
                 </div>
             </div>
         </div>
     </main>
 
-    
+    <script>
+        function copyToClipboard() {
+            const outputText = document.querySelector('.output-text').textContent;
+            navigator.clipboard.writeText(outputText).then(() => {
+                alert('Copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    </script>
 </body>
 
 </html>

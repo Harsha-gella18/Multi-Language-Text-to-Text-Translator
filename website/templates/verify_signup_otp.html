@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="w-full max-w-md mx-auto py-16">
+    <h2 class="text-3xl font-bold mb-6">Verify OTP</h2>
+    <form action="/verify-otp" method="POST" class="space-y-4">
+        <div>
+            <label for="otp" class="block text-sm font-medium">Enter the OTP sent to your email:</label>
+            <input type="text" name="otp" id="otp" required class="input-field w-full p-2 mt-1">
+        </div>
+        <button type="submit" class="btn-primary w-full">Verify OTP</button>
+    </form>
+</section>
+{% endblock %}
+

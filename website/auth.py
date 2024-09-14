@@ -65,14 +65,14 @@ def verify_otp():
                 hashed_password = generate_password_hash(temp_user['password'], method='pbkdf2:sha256')
                 create_user(temp_user['name'], temp_user['username'], hashed_password, temp_user['email'])
                 flash('Registration successful. Please log in.', 'success')
-                return redirect(url_for('auth.login'))
+                return redirect(url_for('auth.login'))  # Redirect to login page
             else:
                 flash('Session expired. Please register again.', 'danger')
                 return redirect(url_for('auth.register'))
         else:
             flash('Invalid OTP. Please try again.', 'danger')
 
-    return render_template('verify_otp.html')
+    return render_template('verify_signup_otp.html')
 
 # ------------------------------------
 # LOGIN
@@ -122,11 +122,16 @@ def dashboard():
                 TargetLanguageCode=target_language
             )
             translated_text = response.get('TranslatedText')
+            print(translated_text)
+
+            # Save to translation history
+            add_translation_to_history(session['username'], input_text, translated_text)
+
         except Exception as e:
             flash(f'Error translating text: {str(e)}', 'danger')
             return redirect(url_for('auth.dashboard'))
-
-    return render_template('dashboard.html', input_text=input_text, target_language=target_language, output_text=translated_text)
+        
+    return render_template('dashboard.html', input_text=input_text, target_language=target_language, translated_text=translated_text)
 
 
 @auth.route('/logout')
